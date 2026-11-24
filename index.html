@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sebi · Videomaker</title>
+<meta name="description" content="Reel, interviste e video per la tua attività. Riprese e montaggio, pronti da pubblicare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* DEMO v2 · palette #ffffff #e5e5e5 #fca311 #14213d #000000 · testi provvisori */
+:root{
+  --white:#ffffff; --grey:#e5e5e5; --grey-l:#f4f4f4; --gold:#fca311; --gold-d:#c97f00; --navy:#14213d; --black:#000000;
+  --ink:#0b0b0b; --soft:#5b6170; --line:#e5e5e5; --line-d:rgba(255,255,255,.12); --mute-d:#a9b0c0;
+  --f-head:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--f-head);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.idx{display:flex;align-items:center;gap:12px;font-family:var(--f-head);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold-d)}
+.idx::before{content:"";width:28px;height:2px;background:var(--gold)}
+.dark .idx{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .2s,background .2s;border:1.5px solid transparent;cursor:pointer;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--black)}
+.btn-line{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-line:hover{border-color:#fff}
+.btn-dark{background:var(--navy);color:#fff}
+a:focus-visible,.btn:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:30;transition:background .3s,box-shadow .3s;padding-top:env(safe-area-inset-top,0px);color:#fff}
+header.solid{background:rgba(20,33,61,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line-d)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:700;font-size:22px;letter-spacing:.04em}
+.logo i{width:11px;height:11px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
+.logo small{font-weight:500;font-size:12px;color:var(--mute-d);letter-spacing:.14em;text-transform:uppercase}
+@keyframes rec{50%{opacity:.3}}
+nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:15px}
+nav a:not(.btn){opacity:.85}
+nav a:not(.btn):hover{opacity:1;color:var(--gold)}
+nav .btn{padding:11px 20px}
+.menu-btn{display:none;background:none;border:0;font:inherit;font-weight:700;cursor:pointer;color:#fff;padding:8px}
+
+/* hero */
+.hero{position:relative;background:radial-gradient(900px 500px at 80% 20%,rgba(252,163,17,.16),transparent 60%),linear-gradient(160deg,var(--navy) 0%,#0b1326 60%,var(--black) 100%);color:#fff;padding-top:76px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line-d) 1px,transparent 1px),linear-gradient(90deg,var(--line-d) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 85%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center;padding-block:72px 64px}
+.hero h1{font-size:clamp(38px,4.6vw,64px);margin:22px 0 22px}
+.hero h1 .l1{display:block;white-space:nowrap}
+.hero h1 .l2{display:block;white-space:nowrap;color:var(--gold);min-height:1.05em}
+.type::after{content:"";display:inline-block;width:3px;height:.82em;background:var(--gold);margin-left:8px;vertical-align:-.04em;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{font-size:19px;color:#c9cfdb;max-width:46ch;margin:0 0 32px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* reel verticale */
+.reel{position:relative;justify-self:center;width:min(100%,340px);aspect-ratio:9/16;border-radius:28px;padding:10px;background:#0a0a0a;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
+.reel .screen{position:relative;height:100%;border-radius:20px;overflow:hidden;background:radial-gradient(70% 50% at 70% 30%,rgba(252,163,17,.75),transparent 65%),radial-gradient(60% 50% at 20% 80%,rgba(229,229,229,.25),transparent 60%),linear-gradient(170deg,#22335a,var(--navy) 50%,#000)}
+.reel .screen::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.reel .top{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:var(--f-head);font-size:12px;letter-spacing:.12em}
+.reel .top span{display:flex;align-items:center;gap:7px}
+.reel .top b{width:8px;height:8px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
+.reel .tc{font-variant-numeric:tabular-nums}
+.reel .bottom{position:absolute;left:16px;right:16px;bottom:18px}
+.reel .bottom strong{display:block;font-family:var(--f-head);font-size:20px;margin-bottom:4px}
+.reel .bottom small{color:#d9dde6;font-size:13px}
+.reel .bar{height:3px;background:rgba(255,255,255,.25);border-radius:3px;margin-top:12px;overflow:hidden}
+.reel .bar i{display:block;height:100%;width:38%;background:var(--gold);animation:prog 9s linear infinite}
+@keyframes prog{from{width:0}to{width:100%}}
+.play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;border:0;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .25s}
+.play:hover{transform:translate(-50%,-50%) scale(1.07)}
+.play svg{width:26px;height:26px;fill:var(--navy);margin-left:4px}
+
+/* barra servizi in fondo all'hero */
+.hero-bar{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-d)}
+.hero-bar div{padding:22px 24px;border-left:1px solid var(--line-d);display:flex;gap:14px;align-items:baseline}
+.hero-bar div:first-child{border-left:0;padding-left:0}
+.hero-bar b{font-family:var(--f-head);color:var(--gold);font-size:14px}
+.hero-bar span{font-weight:600}
+
+section{padding:110px 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end;margin-bottom:52px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.dark .sec-head{border-color:var(--line-d)}
+.sec-head h2{font-size:clamp(34px,4vw,54px);margin-top:16px}
+.sec-head p{color:var(--soft);margin:0;max-width:52ch;justify-self:end}
+.dark .sec-head p{color:var(--mute-d)}
+
+/* servizi bento */
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(210px,auto));gap:16px}
+.card{position:relative;border-radius:var(--r);padding:28px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:var(--grey-l);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,33,61,.12)}
+.card .n{font-family:var(--f-head);font-size:13px;letter-spacing:.14em;color:var(--gold-d);font-weight:600}
+.card h3{font-size:26px;margin:0 0 8px}
+.card p{margin:0;color:var(--soft);font-size:15.5px}
+.card.big{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,var(--navy),#000);color:#fff;border:0}
+.card.big h3{font-size:clamp(30px,3vw,40px)}
+.card.big p{color:#c9cfdb;font-size:17px;max-width:38ch}
+.card.big .n{color:var(--gold)}
+.card.big .visual{position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(252,163,17,.55),transparent 65%)}
+.card.wide{grid-column:span 2}
+.card.gold{background:var(--gold);border:0}
+.card.gold p,.card.gold .n{color:#2b2008}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+
+/* lavori */
+.dark{background:var(--navy);color:#fff}
+.filters{display:flex;flex-wrap:wrap;gap:8px;justify-self:end}
+.filters button{font:inherit;font-weight:700;font-size:14px;padding:9px 18px;border-radius:999px;border:1px solid var(--line-d);background:transparent;color:#fff;cursor:pointer}
+.filters button.on{background:var(--gold);color:#000;border-color:var(--gold)}
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.work .thumb{position:relative;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;background:var(--g)}
+.work .thumb::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:24px;color:#fff;background:rgba(0,0,0,.35);opacity:0;transition:opacity .3s}
+.work:hover .thumb::after{opacity:1}
+.work .thumb span{position:absolute;top:12px;left:12px;font-family:var(--f-head);font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:999px}
+.work .thumb em{position:absolute;bottom:12px;right:12px;font-style:normal;font-family:var(--f-head);font-size:12px;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:6px}
+.work .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 2px 0;border-bottom:1px solid var(--line-d);padding-bottom:14px}
+.work h3{font-size:19px}
+.work small{color:var(--mute-d);font-size:14px;white-space:nowrap}
+.work.hide{display:none}
+
+/* metodo */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.step{padding:34px 30px 36px;border-left:1px solid var(--line)}
+.step:first-child{border-left:0}
+.step b{display:block;font-family:var(--f-head);font-size:56px;line-height:1;color:var(--gold);margin-bottom:22px}
+.step h3{font-size:24px;margin-bottom:14px}
+.step ul{list-style:none;margin:0;padding:0;color:var(--soft);font-size:15.5px}
+.step li{padding:8px 0;border-top:1px solid var(--line)}
+
+/* recensioni */
+.reviews-sec{background:var(--grey-l)}
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.msg{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:18px;min-height:220px}
+.msg blockquote{margin:0;font-size:18px;line-height:1.45;font-weight:500}
+.msg blockquote::before{content:"“";display:block;font-family:var(--f-head);font-size:46px;line-height:.55;color:var(--gold);margin-bottom:10px}
+.msg figcaption{margin-top:auto;display:flex;align-items:center;gap:10px;font-size:14px;padding-top:16px;border-top:1px solid var(--line)}
+.msg figcaption::before{content:"";width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--navy))}
+.msg figcaption b{font-family:var(--f-head)}
+.msg figcaption span{color:var(--soft)}
+.msg-video{padding:12px 12px 18px;background:var(--navy);color:#fff;border:0}
+.msg-video .vthumb{flex:1;min-height:150px;border-radius:12px;background:radial-gradient(60% 60% at 70% 30%,rgba(252,163,17,.6),transparent 65%),linear-gradient(160deg,#22335a,#000);display:grid;place-items:center}
+.msg-video .vthumb span{width:54px;height:54px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;padding-left:4px}
+.msg-video figcaption{padding:14px 10px 0;border-color:var(--line-d)}
+.msg-video figcaption span{color:var(--mute-d)}
+
+/* contatti */
+.contact{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);border-radius:24px;overflow:hidden;background:linear-gradient(150deg,var(--navy),#000);color:#fff}
+.contact .left{padding:64px 56px}
+.contact h2{font-size:clamp(34px,4.2vw,56px);margin:18px 0 18px}
+.contact p{color:#c9cfdb;max-width:44ch;margin:0}
+.contact .right{padding:48px 40px;background:rgba(255,255,255,.04);border-left:1px solid var(--line-d);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.contact .right .btn{width:100%}
+.contact .right small{color:var(--mute-d);text-align:center;margin-top:6px}
+
+footer{padding:56px 0 50px;font-size:14px;color:var(--soft)}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;border-top:1px solid var(--line);padding-top:30px}
+footer b{display:block;font-family:var(--f-head);color:var(--ink);font-size:15px;margin-bottom:8px}
+footer a{display:block;color:var(--ink);font-weight:600}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .reel{width:min(100%,300px)}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .works,.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact{grid-template-columns:1fr}
+  .contact .right{border-left:0;border-top:1px solid var(--line-d)}
+  .sec-head{grid-template-columns:1fr}
+  .sec-head p,.filters{justify-self:start}
+}
+@media (max-width:760px){
+  nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:8px;background:var(--navy);padding:16px 20px 24px}
+  nav.open{display:flex}
+  .menu-btn{display:block}
+  section{padding:76px 0}
+  .hero h1{font-size:clamp(30px,8.4vw,44px)}
+  .hero h1 .l1{white-space:normal}
+  .hero-bar{grid-template-columns:1fr 1fr}
+  .hero-bar div{padding:16px 0;border-left:0;border-top:1px solid var(--line-d)}
+  .bento,.works,.reviews,.steps{grid-template-columns:1fr}
+  .card.big,.card.wide{grid-column:auto;grid-row:auto}
+  .step{border-left:0;border-top:1px solid var(--line)}
+  .step:first-child{border-top:0}
+  .contact .left{padding:44px 24px}
+  .contact .right{padding:28px 24px}
+  footer .wrap{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap">
+    <a class="logo" href="#home"><i></i>SEBI <small>videomaker</small></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <a href="#servizi">Servizi</a>
+      <a href="#lavori">Lavori</a>
+      <a href="#metodo">Metodo</a>
+      <a href="#recensioni">Recensioni</a>
+      <a class="btn btn-gold" href="#contatti">Scrivimi</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="idx">Content creator &amp; videomaker · Roma</div>
+        <h1><span class="l1">Hai un'attività ma niente</span><span class="l2"><span class="type" id="type">contenuti?</span></span></h1>
+        <p>Reel, interviste e video per la tua attività: giro, monto e ti consegno tutto pronto da pubblicare.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="#contatti">Iniziamo</a>
+          <a class="btn btn-line" href="#lavori">Guarda i lavori</a>
+        </div>
+      </div>
+      <div class="reel reveal" aria-label="Showreel">
+        <div class="screen">
+          <div class="top"><span><b></b>REC</span><span class="tc" id="tc">00:00:00:00</span></div>
+          <button class="play" aria-label="Guarda lo showreel"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button>
+          <div class="bottom"><strong>Showreel 2026</strong><small>@sebastianbalaniuc</small><div class="bar"><i></i></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bar">
+      <div><b>01</b><span>Reel per attività</span></div>
+      <div><b>02</b><span>Interviste e podcast</span></div>
+      <div><b>03</b><span>Video brand</span></div>
+      <div><b>04</b><span>Montaggio</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="servizi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">01 · Servizi</div><h2>Cosa posso fare per te</h2></div>
+      <p>Un'unica persona che segue tutto, dalle riprese al montaggio. Tu pensi alla tua attività, ai contenuti ci penso io.</p>
+    </div>
+    <div class="bento">
+      <article class="card big reveal"><div class="visual"></div><span class="n">01</span><div><h3>Reel per attività</h3><p>Contenuti verticali che fanno conoscere il tuo locale o la tua azienda, pensati per Instagram e TikTok.</p><div class="tags"><span>Ristoranti</span><span>Negozi</span><span>Professionisti</span></div></div></article>
+      <article class="card wide reveal"><span class="n">02</span><div><h3>Interviste e podcast</h3><p>Set con luci, audio e monitor, anche direttamente nel tuo locale.</p></div></article>
+      <article class="card reveal"><span class="n">03</span><div><h3>Video brand</h3><p>Chi sei e cosa fai, in un minuto.</p></div></article>
+      <article class="card gold reveal"><span class="n">04</span><div><h3>Montaggio</h3><p>Hai già il girato? Lo monto io.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="lavori">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">02 · Lavori</div><h2>Ultimi progetti</h2></div>
+      <div class="filters">
+        <button class="on" data-f="tutti">Tutti</button><button data-f="reel">Reel</button><button data-f="interviste">Interviste</button><button data-f="brand">Brand</button>
+      </div>
+    </div>
+    <div class="works">
+      <article class="work reveal" data-c="interviste"><div class="thumb" style="--g:radial-gradient(60% 60% at 70% 30%,rgba(252,163,17,.65),transparent 65%),linear-gradient(160deg,#22335a,#000)"><span>Intervista</span><em>2:10</em></div><div class="meta"><h3>Kitchen de Rico</h3><small>Albano Laziale</small></div></article>
+      <article class="work reveal" data-c="reel"><div class="thumb" style="--g:linear-gradient(140deg,#fca311,#14213d 75%)"><span>Reel</span><em>0:15</em></div><div class="meta"><h3>Zoom su Viterbo</h3><small>Viterbo</small></div></article>
+      <article class="work reveal" data-c="brand"><div class="thumb" style="--g:linear-gradient(160deg,#e5e5e5,#14213d 80%)"><span>Brand</span><em>1:24</em></div><div class="meta"><h3>Progetto 03</h3><small>Roma</small></div></article>
+      <article class="work reveal" data-c="interviste"><div class="thumb" style="--g:linear-gradient(160deg,#14213d,#000)"><span>Podcast</span><em>3:02</em></div><div class="meta"><h3>Progetto 04</h3><small>Roma</small></div></article>
+      <article class="work reveal" data-c="reel"><div class="thumb" style="--g:radial-gradient(70% 70% at 30% 70%,rgba(252,163,17,.7),transparent 65%),linear-gradient(160deg,#000,#14213d)"><span>Reel</span><em>0:30</em></div><div class="meta"><h3>Progetto 05</h3><small>Roma</small></div></article>
+      <article class="work reveal" data-c="brand"><div class="thumb" style="--g:linear-gradient(160deg,#22335a,#fca311 140%)"><span>Brand</span><em>0:45</em></div><div class="meta"><h3>Progetto 06</h3><small>Roma</small></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">03 · Metodo</div><h2>Dall'idea al video finito</h2></div>
+      <p>Tre fasi chiare e un solo riferimento: sai sempre a che punto siamo.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><b>01</b><h3>Pre-produzione</h3><ul><li>Idea e obiettivo del video</li><li>Script e scaletta</li><li>Location e piano riprese</li></ul></div>
+      <div class="step"><b>02</b><h3>Riprese</h3><ul><li>Camera, luci e audio</li><li>Interviste e set nel tuo locale</li><li>Contenuti extra per i social</li></ul></div>
+      <div class="step"><b>03</b><h3>Montaggio</h3><ul><li>Ritmo, musica e sottotitoli</li><li>Colori e look del brand</li><li>Formati verticale e orizzontale</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews-sec" id="recensioni">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">04 · Recensioni</div><h2>I messaggi dopo la consegna</h2></div>
+      <p>Niente stelle finte: sono i messaggi veri dei clienti, appena ricevuto il video.</p>
+    </div>
+    <div class="reviews">
+      <figure class="msg reveal"><blockquote>Ho visto gli ultimi due video. Hai lavoro per sempre con noi. Continua così, ci fanno impazzire</blockquote><figcaption><b>Gabriele</b><span>cliente</span></figcaption></figure>
+      <figure class="msg reveal"><blockquote>Buongiorno Sebastian, SPETTACOLARE</blockquote><figcaption><b>Andrea</b><span>cliente</span></figcaption></figure>
+      <figure class="msg msg-video reveal" style="grid-row:span 2"><div class="vthumb"><span>▶</span></div><figcaption><b>Lorenzo</b><span>video recensione</span></figcaption></figure>
+      <figure class="msg reveal"><blockquote>Tanta roba i tuoi video editing. Mi piacciono molto</blockquote><figcaption><b>Felice</b><span>cliente</span></figcaption></figure>
+      <figure class="msg reveal"><blockquote>Fighissimo lo zoom su Viterbo, grazie</blockquote><figcaption><b>Cliente</b><span>reel</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="left">
+        <div class="idx">05 · Contatti</div>
+        <h2>Iniziamo a creare i tuoi contenuti.</h2>
+        <p>Scrivimi "REELS" in DM su Instagram o mandami un messaggio su WhatsApp: ti rispondo con un'idea e un preventivo.</p>
+      </div>
+      <div class="right">
+        <a class="btn btn-gold" id="waBtn" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+        <a class="btn btn-line" href="https://www.instagram.com/sebastianbalaniuc/" target="_blank" rel="noopener">Scrivimi "REELS" su Instagram</a>
+        <a class="btn btn-line" id="mailBtn" href="#">Email</a>
+        <small>Rispondo entro 24 ore</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>Sebastian Balaniuc</b>Content creator &amp; videomaker · Roma</div>
+    <div><b>Social</b><a href="https://www.instagram.com/sebastianbalaniuc/" target="_blank" rel="noopener">Instagram</a></div>
+    <div><b>Contatti</b><a href="#contatti">Scrivimi</a></div>
+  </div>
+</footer>
+
+<script>
+  // Da completare: numero WhatsApp (solo cifre, con 39 davanti) ed email di Sebi
+  const WHATSAPP = '39XXXXXXXXXX';
+  const EMAIL = 'email@dominio.it';
+  document.getElementById('waBtn').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent("Ciao Sebastian! Ho un'attività e vorrei dei contenuti video.");
+  document.getElementById('mailBtn').href = 'mailto:' + EMAIL;
+
+  const header = document.getElementById('top');
+  const onScroll = () => header.classList.toggle('solid', scrollY > 30);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  const nav = document.getElementById('nav'), mb = document.getElementById('menuBtn');
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); header.classList.toggle('solid', o || scrollY > 30); mb.setAttribute('aria-expanded', o); });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); }));
+
+  // parola che si scrive, lenta e sempre sulla stessa riga
+  const words = ['contenuti?', 'reel?', 'video?', 'interviste?'];
+  const el = document.getElementById('type');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!still) {
+    let w = 0, i = words[0].length, del = true;
+    const tick = () => {
+      const word = words[w];
+      i += del ? -1 : 1; el.textContent = word.slice(0, i);
+      let t = del ? 90 : 170;
+      if (!del && i === word.length) { del = true; t = 2800; }
+      else if (del && i === 0) { del = false; w = (w + 1) % words.length; t = 500; }
+      setTimeout(tick, t);
+    };
+    setTimeout(tick, 2800);
+  }
+
+  const tc = document.getElementById('tc'); let f = 0;
+  const pad = n => String(n).padStart(2, '0');
+  setInterval(() => { f++; const s = Math.floor(f / 25); tc.textContent = `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f % 25)}`; }, 40);
+
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.work').forEach(w => w.classList.toggle('hide', b.dataset.f !== 'tutti' && w.dataset.c !== b.dataset.f));
+  }));
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+</script>
+</body>
+</html>
