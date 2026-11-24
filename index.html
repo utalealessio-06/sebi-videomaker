@@ -36,7 +36,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible{outline:2px solid var(--
 
 /* header */
 header{position:fixed;inset:0 0 auto;z-index:30;transition:background .3s,box-shadow .3s;padding-top:env(safe-area-inset-top,0px);color:#fff}
-header.solid{background:rgba(20,33,61,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line-d)}
+header.solid{background:rgba(20,33,61,.97);box-shadow:0 1px 0 var(--line-d)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:700;font-size:22px;letter-spacing:.04em}
 .logo i{width:11px;height:11px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
@@ -72,8 +72,10 @@ nav .btn{padding:11px 20px}
 .reel .bottom strong{display:block;font-family:var(--f-head);font-size:20px;margin-bottom:4px}
 .reel .bottom small{color:#d9dde6;font-size:13px}
 .reel .bar{height:3px;background:rgba(255,255,255,.25);border-radius:3px;margin-top:12px;overflow:hidden}
-.reel .bar i{display:block;height:100%;width:38%;background:var(--gold);animation:prog 9s linear infinite}
-@keyframes prog{from{width:0}to{width:100%}}
+.reel .bar i{display:block;height:100%;width:100%;background:var(--gold);transform-origin:left;animation:prog 9s linear infinite;will-change:transform}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.reel .screen{contain:paint}
+.hero.off *{animation-play-state:paused!important}
 .play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;border:0;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .25s}
 .play:hover{transform:translate(-50%,-50%) scale(1.07)}
 .play svg{width:26px;height:26px;fill:var(--navy);margin-left:4px}
@@ -366,7 +368,9 @@ footer a{display:block;color:var(--ink);font-weight:600}
 
   const tc = document.getElementById('tc'); let f = 0;
   const pad = n => String(n).padStart(2, '0');
-  setInterval(() => { f++; const s = Math.floor(f / 25); tc.textContent = `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f % 25)}`; }, 40);
+  const hero = document.getElementById('home'); let heroOn = true;
+  new IntersectionObserver(([e]) => { heroOn = e.isIntersecting; hero.classList.toggle('off', !heroOn); }).observe(hero);
+  setInterval(() => { if (!heroOn || document.hidden) return; f++; const s = Math.floor(f / 25); tc.textContent = `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f % 25)}`; }, 40);
 
   document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('on', x === b));
