@@ -139,6 +139,18 @@ section{padding:110px 0}
 .warn{margin-top:24px;background:var(--navy);color:#fff;border-radius:var(--r);padding:22px 24px;font-weight:600;border-left:4px solid var(--gold)}
 .cta-note{display:block;margin-top:14px;font-size:14px;color:var(--mute-d)}
 
+/* chi sono */
+.about-sec{background:var(--grey-l)}
+.about{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+.about .txt p{font-size:19px;margin:0 0 18px}
+.about .txt p.lead{font-family:var(--f-head);font-size:clamp(24px,2.4vw,30px);font-weight:600;line-height:1.2;color:var(--navy)}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--gold)}
+.tl li{position:relative;padding:0 0 28px 26px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.tl b{display:block;font-family:var(--f-head);font-size:22px;color:var(--ink);margin-bottom:2px}
+.tl span{color:var(--soft);font-size:15.5px}
+
 /* domande */
 .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;align-items:start}
 .faq details{border-bottom:1px solid var(--line)}
@@ -223,7 +235,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
   .contact .right{border-left:0;border-top:1px solid var(--line-d)}
   .sec-head{grid-template-columns:1fr}
   .sec-head p,.filters{justify-self:start}
-  .prob{grid-template-columns:1fr;gap:36px}
+  .prob,.about{grid-template-columns:1fr;gap:36px}
 }
 @media (max-width:760px){
   nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:8px;background:var(--navy);padding:16px 20px 24px}
@@ -257,6 +269,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
     <nav id="nav">
       <a href="#servizi">Servizi</a>
       <a href="#lavori">Lavori</a>
+      <a href="#chi-sono">Chi sono</a>
       <a href="#metodo">Come funziona</a>
       <a href="#recensioni">Recensioni</a>
       <a href="#domande">Domande</a>
@@ -353,10 +366,31 @@ footer .legal{grid-column:1/-1;font-size:13px}
   </div>
 </section>
 
+<section class="about-sec" id="chi-sono">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">04 · Chi sono</div><h2>Chi c'è dietro la camera</h2></div>
+      <p>Prima di affidarmi la tua immagine, è giusto che tu sappia con chi parli.</p>
+    </div>
+    <div class="about">
+      <div class="txt reveal">
+        <p class="lead">Mi chiamo Sebastian e ho 20 anni. Ma faccio questo lavoro da quando ne avevo 16.</p>
+        <p>Ho iniziato online partendo dal video editing. A 18 anni ho aperto la mia partita IVA e da allora ho lavorato con molte aziende, tra cui una grande realtà di Dubai, nel reparto marketing e video.</p>
+        <p>Per questo non mi limito a girare un bel video. Parto dall'analisi della tua attività e dallo script, poi registro, monto e, se vuoi, ti seguo anche nella pubblicazione. E avendo buone basi di marketing, ogni contenuto nasce con <strong>un obiettivo preciso</strong>.</p>
+      </div>
+      <ul class="tl reveal">
+        <li><b>16 anni</b><span>Inizio a lavorare online, partendo dal video editing.</span></li>
+        <li><b>18 anni</b><span>Apro la partita IVA e lavoro con aziende, anche a Dubai nel reparto marketing e video.</span></li>
+        <li><b>Oggi</b><span>Seguo i contenuti a 360°: analisi, script, riprese, montaggio e pubblicazione.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section id="metodo">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">04 · Come funziona</div><h2>Cosa succede dopo che mi scrivi</h2></div>
+      <div><div class="idx">05 · Come funziona</div><h2>Cosa succede dopo che mi scrivi</h2></div>
       <p>Tre fasi chiare e un solo riferimento: sai sempre a che punto siamo. Nessuna sorpresa.</p>
     </div>
     <div class="steps reveal">
@@ -370,7 +404,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section class="reviews-sec" id="recensioni">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">05 · Recensioni</div><h2>I messaggi dopo la consegna</h2></div>
+      <div><div class="idx">06 · Recensioni</div><h2>I messaggi dopo la consegna</h2></div>
       <p>Niente stelline finte: sono i messaggi veri dei clienti, appena ricevuto il video.</p>
     </div>
     <div class="reviews">
@@ -386,7 +420,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section id="domande">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">06 · Domande</div><h2>Prima che tu me lo chieda</h2></div>
+      <div><div class="idx">07 · Domande</div><h2>Prima che tu me lo chieda</h2></div>
       <p>I dubbi che mi fanno quasi tutti prima di iniziare.</p>
     </div>
     <div class="faq reveal">
@@ -408,7 +442,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
   <div class="wrap">
     <div class="contact reveal">
       <div class="left">
-        <div class="idx">07 · Contatti</div>
+        <div class="idx">08 · Contatti</div>
         <h2>Il tuo prossimo cliente ti sta già cercando su Instagram.</h2>
         <p>Facciamo in modo che trovi qualcosa che lo convinca. Scrivimi su WhatsApp o mandami <strong>"REELS"</strong> in DM su Instagram: ti rispondo con un'idea per la tua attività e un preventivo.</p>
       </div>
