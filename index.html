@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SB · Content marketing</title>
-<meta name="description" content="Reel, interviste e video per la tua attività. Riprese e montaggio, pronti da pubblicare.">
+<meta name="description" content="Hai un'attività ma niente contenuti? Vengo nel tuo locale, giro e monto reel e interviste pronti da pubblicare. Roma e dintorni.">
 <meta name="theme-color" content="#14213d">
 <link rel="canonical" href="https://sebivideomaker.netlify.app/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="SB · Content marketing">
 <meta property="og:title" content="SB · Content marketing">
-<meta property="og:description" content="Reel, interviste e video per la tua attività. Riprese e montaggio, pronti da pubblicare.">
+<meta property="og:description" content="Reel, interviste e video girati nel tuo locale, pronti da pubblicare.">
 <meta property="og:url" content="https://sebivideomaker.netlify.app/">
 <meta property="og:image" content="https://sebivideomaker.netlify.app/og.png">
 <meta property="og:image:width" content="1200">
@@ -128,6 +128,26 @@ section{padding:110px 0}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .tags span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
 
+/* problema */
+.prob-sec{background:var(--grey-l)}
+.prob{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+.story p{font-size:21px;line-height:1.5;margin:0 0 18px}
+.story p.punch{font-family:var(--f-head);font-size:clamp(26px,2.6vw,34px);font-weight:600;line-height:1.15;color:var(--navy);margin:28px 0 0}
+.pains{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pains li{padding:18px 0;border-bottom:1px solid var(--line);color:var(--soft);font-size:15.5px}
+.pains b{display:block;font-family:var(--f-head);color:var(--ink);font-size:19px;margin-bottom:4px}
+.warn{margin-top:24px;background:var(--navy);color:#fff;border-radius:var(--r);padding:22px 24px;font-weight:600;border-left:4px solid var(--gold)}
+.cta-note{display:block;margin-top:14px;font-size:14px;color:var(--mute-d)}
+
+/* domande */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;align-items:start}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:22px 40px 22px 0;font-family:var(--f-head);font-weight:600;font-size:20px;line-height:1.3;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);color:var(--gold-d);font-size:28px;font-weight:500}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 22px;color:var(--soft)}
+
 /* lavori */
 .dark{background:var(--navy);color:#fff}
 .filters{display:flex;flex-wrap:wrap;gap:8px;justify-self:end}
@@ -203,6 +223,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
   .contact .right{border-left:0;border-top:1px solid var(--line-d)}
   .sec-head{grid-template-columns:1fr}
   .sec-head p,.filters{justify-self:start}
+  .prob{grid-template-columns:1fr;gap:36px}
 }
 @media (max-width:760px){
   nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:8px;background:var(--navy);padding:16px 20px 24px}
@@ -213,7 +234,8 @@ footer .legal{grid-column:1/-1;font-size:13px}
   .hero h1 .l1{white-space:normal}
   .hero-bar{grid-template-columns:1fr 1fr}
   .hero-bar div{padding:16px 0;border-left:0;border-top:1px solid var(--line-d)}
-  .bento,.works,.reviews,.steps{grid-template-columns:1fr}
+  .bento,.works,.reviews,.steps,.faq{grid-template-columns:1fr}
+  .story p{font-size:19px}
   .card.big,.card.wide{grid-column:auto;grid-row:auto}
   .step{border-left:0;border-top:1px solid var(--line)}
   .step:first-child{border-top:0}
@@ -235,8 +257,9 @@ footer .legal{grid-column:1/-1;font-size:13px}
     <nav id="nav">
       <a href="#servizi">Servizi</a>
       <a href="#lavori">Lavori</a>
-      <a href="#metodo">Metodo</a>
+      <a href="#metodo">Come funziona</a>
       <a href="#recensioni">Recensioni</a>
+      <a href="#domande">Domande</a>
       <a class="btn btn-gold" href="#contatti">Scrivimi</a>
     </nav>
   </div>
@@ -251,11 +274,12 @@ footer .legal{grid-column:1/-1;font-size:13px}
         <h1><span class="l1">Hai un'attività ma niente</span><span class="l2"><span class="type" id="type">contenuti?</span></span></h1>
       </div>
       <div class="h-body">
-        <p>Reel, interviste e video per la tua attività: giro, monto e ti consegno tutto pronto da pubblicare.</p>
+        <p>Sei bravo nel tuo lavoro, ma online non si vede. Vengo nel tuo locale, giro e monto i video, e te li consegno <strong>pronti da pubblicare</strong>.</p>
         <div class="actions">
-          <a class="btn btn-gold" href="#contatti">Iniziamo</a>
+          <a class="btn btn-gold wa-link" href="#contatti" target="_blank" rel="noopener">Voglio i miei contenuti</a>
           <a class="btn btn-line" href="#lavori">Guarda i lavori</a>
         </div>
+        <small class="cta-note">Si apre WhatsApp · Rispondo entro 24 ore · Nessun impegno</small>
       </div>
       <div class="reel reveal" aria-label="Showreel">
         <div class="screen">
@@ -274,17 +298,42 @@ footer .legal{grid-column:1/-1;font-size:13px}
   </div>
 </section>
 
+<section class="prob-sec" id="problema">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">01 · Il problema</div><h2>Il tuo profilo sta lavorando contro di te</h2></div>
+      <p>Funziona così per quasi tutte le attività. Vediamo se ti suona familiare.</p>
+    </div>
+    <div class="prob">
+      <div class="story reveal">
+        <p>Un cliente nuovo sente parlare di te. Prima di venire, apre Instagram.</p>
+        <p>Trova l'ultimo post di cinque mesi fa. Una foto storta, con la luce gialla della sala. Nessun video.</p>
+        <p>Poi apre il profilo di quello di fronte: reel ogni settimana, la sala piena, la gente che ride.</p>
+        <p class="punch">Indovina dove va a cena.</p>
+      </div>
+      <div class="reveal">
+        <ul class="pains">
+          <li><b>Non hai tempo.</b>Tra fornitori, staff e clienti, i social restano sempre "da fare domani".</li>
+          <li><b>Col telefono non viene bene.</b>Luce, audio e montaggio non rappresentano quello che fai davvero.</li>
+          <li><b>Davanti alla camera ti blocchi.</b>E alla fine non pubblichi niente.</li>
+        </ul>
+        <div class="warn">Ogni settimana senza contenuti è una settimana in cui chi non ti conosce sceglie qualcun altro. E non lo saprai mai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="servizi">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">01 · Servizi</div><h2>Cosa posso fare per te</h2></div>
-      <p>Un'unica persona che segue tutto, dalle riprese al montaggio. Tu pensi alla tua attività, ai contenuti ci penso io.</p>
+      <div><div class="idx">02 · La soluzione</div><h2>Ci penso io, dall'idea al video finito</h2></div>
+      <p>Un'unica persona che segue tutto. Vengo nel tuo locale con il set, ti dico cosa dire e ti consegno i video <strong>pronti da pubblicare</strong>. Tu pensi solo a lavorare.</p>
     </div>
     <div class="bento">
-      <article class="card big reveal"><div class="visual"></div><span class="n">01</span><div><h3>Reel per attività</h3><p>Contenuti verticali che fanno conoscere il tuo locale o la tua azienda, pensati per Instagram e TikTok.</p><div class="tags"><span>Ristoranti</span><span>Negozi</span><span>Professionisti</span></div></div></article>
-      <article class="card wide reveal"><span class="n">02</span><div><h3>Interviste e podcast</h3><p>Set con luci, audio e monitor, anche direttamente nel tuo locale.</p></div></article>
-      <article class="card reveal"><span class="n">03</span><div><h3>Video brand</h3><p>Chi sei e cosa fai, in un minuto.</p></div></article>
-      <article class="card gold reveal"><span class="n">04</span><div><h3>Montaggio</h3><p>Hai già il girato? Lo monto io.</p></div></article>
+      <article class="card big reveal"><div class="visual"></div><span class="n">01</span><div><h3>Reel per attività</h3><p>Video verticali che fanno venire voglia di venire da te. Pensati per Instagram e TikTok, con ritmo, musica e sottotitoli.</p><div class="tags"><span>Ristoranti</span><span>Negozi</span><span>Professionisti</span></div></div></article>
+      <article class="card wide reveal"><span class="n">02</span><div><h3>Interviste e podcast</h3><p>Racconta chi sei e perché lavori così. Porto luci, audio e monitor <strong>direttamente nel tuo locale</strong>.</p></div></article>
+      <article class="card reveal"><span class="n">03</span><div><h3>Video brand</h3><p>Chi sei e cosa fai, in un minuto. Da mettere ovunque: sito, profilo, Google.</p></div></article>
+      <article class="card gold reveal"><span class="n">04</span><div><h3>Montaggio</h3><p>Hai già il girato? Me lo mandi e te lo restituisco pronto da pubblicare.</p></div></article>
     </div>
   </div>
 </section>
@@ -292,7 +341,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section class="dark" id="lavori">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">02 · Lavori</div><h2>Ultimi progetti</h2></div>
+      <div><div class="idx">03 · Lavori</div><h2>Guarda cosa ne esce</h2><p style="margin-top:14px">Niente video stock: sono lavori veri, girati per attività vere.</p></div>
       <div class="filters" role="group" aria-label="Filtra i lavori">
         <button class="on" data-f="tutti" aria-pressed="true">Tutti</button><button data-f="reel" aria-pressed="false">Reel</button><button data-f="interviste" aria-pressed="false">Interviste</button><button data-f="brand" aria-pressed="false">Brand</button>
       </div>
@@ -311,13 +360,13 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section id="metodo">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">03 · Metodo</div><h2>Dall'idea al video finito</h2></div>
-      <p>Tre fasi chiare e un solo riferimento: sai sempre a che punto siamo.</p>
+      <div><div class="idx">04 · Come funziona</div><h2>Cosa succede dopo che mi scrivi</h2></div>
+      <p>Tre fasi chiare e un solo riferimento: sai sempre a che punto siamo. Nessuna sorpresa.</p>
     </div>
     <div class="steps reveal">
-      <div class="step"><b>01</b><h3>Pre-produzione</h3><ul><li>Idea e obiettivo del video</li><li>Script e scaletta</li><li>Location e piano riprese</li></ul></div>
-      <div class="step"><b>02</b><h3>Riprese</h3><ul><li>Camera, luci e audio</li><li>Interviste e set nel tuo locale</li><li>Contenuti extra per i social</li></ul></div>
-      <div class="step"><b>03</b><h3>Montaggio</h3><ul><li>Ritmo, musica e sottotitoli</li><li>Colori e look del brand</li><li>Formati verticale e orizzontale</li></ul></div>
+      <div class="step"><b>01</b><h3>Prima</h3><ul><li>Mi scrivi su WhatsApp, ti rispondo entro 24 ore</li><li>Ti propongo un'idea e un preventivo, senza impegno</li><li>Prepariamo lo script insieme: sai già cosa dire</li></ul></div>
+      <div class="step"><b>02</b><h3>Durante</h3><ul><li>Giro nel tuo locale, senza fermare il lavoro</li><li>Porto io camera, luci e audio</li><li>Davanti alla camera ti guido io</li></ul></div>
+      <div class="step"><b>03</b><h3>Dopo</h3><ul><li>Monto con ritmo, musica e sottotitoli</li><li>Formati verticale e orizzontale</li><li>Ricevi i video <strong>pronti da pubblicare</strong></li></ul></div>
     </div>
   </div>
 </section>
@@ -325,8 +374,8 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section class="reviews-sec" id="recensioni">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx">04 · Recensioni</div><h2>I messaggi dopo la consegna</h2></div>
-      <p>Niente stelle finte: sono i messaggi veri dei clienti, appena ricevuto il video.</p>
+      <div><div class="idx">05 · Recensioni</div><h2>I messaggi dopo la consegna</h2></div>
+      <p>Niente stelline finte: sono i messaggi veri dei clienti, appena ricevuto il video.</p>
     </div>
     <div class="reviews">
       <figure class="msg reveal"><blockquote>Ho visto gli ultimi due video. Hai lavoro per sempre con noi. Continua così, ci fanno impazzire</blockquote><figcaption><b>Gabriele</b><span>cliente</span></figcaption></figure>
@@ -338,19 +387,40 @@ footer .legal{grid-column:1/-1;font-size:13px}
   </div>
 </section>
 
+<section id="domande">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">06 · Domande</div><h2>Prima che tu me lo chieda</h2></div>
+      <p>I dubbi che mi fanno quasi tutti prima di iniziare.</p>
+    </div>
+    <div class="faq reveal">
+      <div>
+        <details><summary>Quanto costa?</summary><p>Si parte da <strong>700 €</strong>. Ogni progetto però ha un prezzo su misura: dipende da quanti video ti servono e da dove giriamo. Il preventivo è senza impegno, così paghi solo quello che ti serve davvero.</p></details>
+        <details><summary>Non so stare davanti alla camera.</summary><p>Quasi nessuno ci sa stare la prima volta. Lo script lo scriviamo insieme e durante le riprese ti guido io. Puoi ripetere quante volte vuoi: nel video finale resta solo la versione migliore.</p></details>
+        <details><summary>Non ho tempo.</summary><p>Giro direttamente nel tuo locale, organizzandomi sui tuoi orari. Idea, script e montaggio li faccio io: a te resta solo la parte davanti alla camera.</p></details>
+      </div>
+      <div>
+        <details><summary>Funziona anche per la mia attività?</summary><p>Ristoranti, negozi, palestre, professionisti: se hai clienti che ti cercano online, sì. E se non sono sicuro di poterti aiutare, te lo dico subito.</p></details>
+        <details><summary>Ho già provato con un'agenzia e non è cambiato niente.</summary><p>Qui parli sempre con me, dall'idea alla consegna. E giro nel tuo locale, con le tue persone: niente foto stock e niente grafiche tutte uguali.</p></details>
+        <details><summary>Dove ti sposti?</summary><p>Roma e dintorni: ho già girato ai Castelli Romani e a Viterbo. Per altre zone scrivimi e vediamo insieme.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contatti">
   <div class="wrap">
     <div class="contact reveal">
       <div class="left">
-        <div class="idx">05 · Contatti</div>
-        <h2>Iniziamo a creare i tuoi contenuti.</h2>
-        <p>Scrivimi "REELS" in DM su Instagram o mandami un messaggio su WhatsApp: ti rispondo con un'idea e un preventivo.</p>
+        <div class="idx">07 · Contatti</div>
+        <h2>Il tuo prossimo cliente ti sta già cercando su Instagram.</h2>
+        <p>Facciamo in modo che trovi qualcosa che lo convinca. Scrivimi su WhatsApp o mandami <strong>"REELS"</strong> in DM su Instagram: ti rispondo con un'idea per la tua attività e un preventivo.</p>
       </div>
       <div class="right">
         <a class="btn btn-gold" id="waBtn" href="#" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
         <a class="btn btn-line" href="https://www.instagram.com/sebastianbalaniuc/" target="_blank" rel="noopener">Scrivimi "REELS" su Instagram</a>
         <a class="btn btn-line" id="mailBtn" href="#">Email</a>
-        <small>Rispondo entro 24 ore</small>
+        <small>Rispondo entro 24 ore · Nessun impegno</small>
       </div>
     </div>
   </div>
@@ -359,7 +429,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 
 <footer>
   <div class="wrap">
-    <div><b>Sebastian Balaniuc</b>Content marketing</div>
+    <div><b>Sebastian Balaniuc</b>Content marketing per attività · Roma e dintorni</div>
     <div><b>Social</b><a href="https://www.instagram.com/sebastianbalaniuc/" target="_blank" rel="noopener">Instagram</a></div>
     <div><b>Contatti</b><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp · 373 305 2294</a><a class="mail-link" href="#">Email</a></div>
     <div class="legal">© 2026 Sebastian Balaniuc · P.IVA IT17885961007</div>
@@ -372,7 +442,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
   // Da completare: numero WhatsApp (solo cifre, con 39 davanti) ed email di Sebi
   const WHATSAPP = '393733052294';
   const EMAIL = 'email@dominio.it';
-  const waUrl = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent("Ciao Sebastian! Ho un'attività e vorrei dei contenuti video.");
+  const waUrl = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent("Ciao Sebastian! Ho un/una ______ a ______ e vorrei dei video per i social. Mi dai qualche info?");
   document.querySelectorAll('#waBtn, .wa-link').forEach(a => a.href = waUrl);
   // finché l'email è quella provvisoria, i link email restano nascosti
   const hasMail = !EMAIL.includes('dominio');
