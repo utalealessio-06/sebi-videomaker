@@ -72,6 +72,7 @@ nav .btn{padding:11px 20px}
 .hero h1{font-size:clamp(38px,4.6vw,64px);margin:22px 0 22px}
 .hero h1 .l1{display:block;white-space:nowrap}
 .hero h1 .l2{display:block;white-space:nowrap;color:var(--gold);min-height:1.05em}
+@media (min-width:1021px){.hero h1 .l2{font-size:1.4em;margin-top:.08em}}
 .type::after{content:"";display:inline-block;width:3px;height:.82em;background:var(--gold);margin-left:8px;vertical-align:-.04em;animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .hero p{font-size:19px;color:#c9cfdb;max-width:46ch;margin:0 0 32px}
@@ -86,7 +87,6 @@ nav .btn{padding:11px 20px}
 .reel .top b{width:8px;height:8px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
 .reel .tc{font-variant-numeric:tabular-nums}
 .reel .bottom{position:absolute;left:16px;right:16px;bottom:18px}
-.reel .bottom strong{display:block;font-family:var(--f-head);font-size:20px;margin-bottom:4px}
 .reel .bottom small{color:#d9dde6;font-size:13px}
 .reel .bar{height:3px;background:rgba(255,255,255,.25);border-radius:3px;margin-top:12px;overflow:hidden}
 .reel .bar i{display:block;height:100%;width:100%;background:var(--gold);transform-origin:left;animation:prog 9s linear infinite;will-change:transform}
@@ -230,7 +230,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 
 <header id="top">
   <div class="wrap">
-    <a class="logo" href="#home"><i></i>SEBI <small>videomaker</small></a>
+    <a class="logo" href="#home" aria-label="SB, torna all'inizio"><i></i>SB</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="#servizi">Servizi</a>
@@ -247,7 +247,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="idx">Content creator &amp; videomaker · Roma</div>
+        <div class="idx">Content marketing</div>
         <h1><span class="l1">Hai un'attività ma niente</span><span class="l2"><span class="type" id="type">contenuti?</span></span></h1>
         <p>Reel, interviste e video per la tua attività: giro, monto e ti consegno tutto pronto da pubblicare.</p>
         <div class="actions">
@@ -259,7 +259,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
         <div class="screen">
           <div class="top"><span><b></b>REC</span><span class="tc" id="tc">00:00:00:00</span></div>
           <button class="play" aria-label="Guarda lo showreel"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button>
-          <div class="bottom"><strong>Showreel 2026</strong><small>@sebastianbalaniuc</small><div class="bar"><i></i></div></div>
+          <div class="bottom"><small>@sebastianbalaniuc</small><div class="bar"><i></i></div></div>
         </div>
       </div>
     </div>
@@ -357,7 +357,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 
 <footer>
   <div class="wrap">
-    <div><b>Sebastian Balaniuc</b>Content creator &amp; videomaker · Roma</div>
+    <div><b>Sebastian Balaniuc</b>Content marketing</div>
     <div><b>Social</b><a href="https://www.instagram.com/sebastianbalaniuc/" target="_blank" rel="noopener">Instagram</a></div>
     <div><b>Contatti</b><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp · 373 305 2294</a><a class="mail-link" href="#">Email</a></div>
     <div class="legal">© 2026 Sebastian Balaniuc<!-- · P.IVA da inserire --></div>
