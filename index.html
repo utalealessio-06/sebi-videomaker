@@ -67,14 +67,14 @@ nav .btn{padding:11px 20px}
 /* hero */
 .hero{position:relative;background:radial-gradient(900px 500px at 80% 20%,rgba(252,163,17,.16),transparent 60%),linear-gradient(160deg,var(--navy) 0%,#0b1326 60%,var(--black) 100%);color:#fff;padding-top:76px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line-d) 1px,transparent 1px),linear-gradient(90deg,var(--line-d) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 85%);pointer-events:none}
-.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"head head" "body reel";gap:40px 56px;align-items:start;padding-block:72px 64px}
-.h-head{grid-area:head}
-.h-body{grid-area:body;padding-top:8px}
-.hero-grid .reel{grid-area:reel}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"head reel" "body reel";gap:0 56px;padding-block:56px 56px}
+.h-head{grid-area:head;align-self:end}
+.h-body{grid-area:body;align-self:start}
+.hero-grid .reel{grid-area:reel;justify-self:end;width:min(100%,300px)}
 .hero h1{font-size:clamp(38px,4.6vw,64px);margin:22px 0 22px}
 .hero h1 .l1{display:block;white-space:nowrap}
 .hero h1 .l2{display:block;white-space:nowrap;color:var(--gold);min-height:1.05em}
-@media (min-width:861px){.hero h1{margin-bottom:24px}.hero h1 .l2{font-size:2.3em;line-height:1;margin-top:.04em}.hero h1 .l2 .type::after{width:max(3px,.03em)}}
+@media (min-width:861px){.hero h1{margin-bottom:24px}.hero h1 .l2{font-size:1.8em;line-height:1;margin-top:.04em}.hero h1 .l2 .type::after{width:max(3px,.03em)}}
 .type::after{content:"";display:inline-block;width:3px;height:.82em;background:var(--gold);margin-left:8px;vertical-align:-.04em;animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .hero p{font-size:19px;color:#c9cfdb;max-width:46ch;margin:0 0 32px}
@@ -198,8 +198,8 @@ footer .legal{grid-column:1/-1;font-size:13px}
 
 @media (max-width:1020px){
   .hero-grid{grid-template-columns:1fr;grid-template-areas:"head" "body" "reel";gap:0}
-  .h-body{padding-top:0;margin-bottom:44px}
-  .reel{width:min(100%,300px)}
+  .h-body{margin-bottom:44px}
+  .hero-grid .reel{justify-self:center}
   .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
   .works,.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact{grid-template-columns:1fr}
