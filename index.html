@@ -176,6 +176,18 @@ section{padding:110px 0}
 .work small{color:var(--mute-d);font-size:14px;white-space:nowrap}
 .work.hide{display:none}
 
+/* video YouTube: copertina sul sito, player in finestra solo al clic */
+[data-yt]{cursor:pointer}
+[data-yt] .thumb,[data-yt] .vthumb{background-size:cover;background-position:center}
+[data-yt]:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:var(--r)}
+.player{width:min(1100px,92vw);max-height:88vh;padding:0;border:0;border-radius:var(--r);background:#000;overflow:visible}
+.player.vert{width:auto;height:min(86vh,1100px);aspect-ratio:9/16}
+.player::backdrop{background:rgba(0,0,0,.85)}
+.player .frame{aspect-ratio:16/9;width:100%}
+.player.vert .frame{aspect-ratio:auto;height:100%}
+.player iframe{display:block;width:100%;height:100%;border:0;border-radius:var(--r)}
+.player .x{position:absolute;top:-46px;right:0;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#000;font-size:20px;line-height:1;cursor:pointer}
+
 /* metodo */
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .step{padding:34px 30px 36px;border-left:1px solid var(--line)}
@@ -359,6 +371,13 @@ footer .legal{grid-column:1/-1;font-size:13px}
         <button class="on" data-f="tutti" aria-pressed="true">Tutti</button><button data-f="reel" aria-pressed="false">Reel</button><button data-f="interviste" aria-pressed="false">Interviste</button><button data-f="brand" aria-pressed="false">Brand</button>
       </div>
     </div>
+    <!--
+      VIDEO DA YOUTUBE: incolla il link del video in data-yt="..." sull'<article>.
+      Va bene qualsiasi link (youtu.be/…, youtube.com/watch?v=…, youtube.com/shorts/…).
+      I link /shorts/ si aprono in verticale; per forzarlo aggiungi data-vert.
+      Senza data-yt la card resta com'è, con lo sfondo colorato.
+      Esempio: <article class="work reveal" data-c="reel" data-yt="https://youtube.com/shorts/XXXXXXXXXXX">
+    -->
     <div class="works">
       <article class="work reveal" data-c="interviste"><div class="thumb" style="--g:radial-gradient(60% 60% at 70% 30%,rgba(252,163,17,.65),transparent 65%),linear-gradient(160deg,#22335a,#000)"><span>Intervista</span><em>2:10</em></div><div class="meta"><h3>Kikko De Riso</h3><small>Albano Laziale</small></div></article>
       <article class="work reveal" data-c="reel"><div class="thumb" style="--g:linear-gradient(140deg,#fca311,#14213d 75%)"><span>Reel</span><em>0:15</em></div><div class="meta"><h3>Zoom su Viterbo</h3><small>Viterbo</small></div></article>
@@ -515,6 +534,34 @@ footer .legal{grid-column:1/-1;font-size:13px}
     document.querySelectorAll('.filters button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
     document.querySelectorAll('.work').forEach(w => w.classList.toggle('hide', b.dataset.f !== 'tutti' && w.dataset.c !== b.dataset.f));
   }));
+
+  // video YouTube: copertina presa da YouTube, player caricato solo al clic
+  const ytId = s => (s.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([\w-]{11})/) || s.match(/^([\w-]{11})$/) || [])[1];
+  const player = document.createElement('dialog');
+  player.className = 'player';
+  player.innerHTML = '<button class="x" aria-label="Chiudi video">✕</button><div class="frame"></div>';
+  document.body.append(player);
+  const frame = player.querySelector('.frame');
+  const closePlayer = () => player.close();
+  player.querySelector('.x').addEventListener('click', closePlayer);
+  player.addEventListener('click', e => { if (e.target === player) closePlayer(); });
+  player.addEventListener('close', () => frame.innerHTML = '');
+  document.querySelectorAll('[data-yt]').forEach(card => {
+    const id = ytId(card.dataset.yt.trim());
+    if (!id) { card.removeAttribute('data-yt'); return; }
+    const vert = card.hasAttribute('data-vert') || /\/shorts\//.test(card.dataset.yt);
+    const cover = card.querySelector('.thumb, .vthumb');
+    if (cover) cover.style.backgroundImage = `linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+    const title = card.querySelector('h3, b')?.textContent || 'video';
+    card.tabIndex = 0; card.setAttribute('role', 'button'); card.setAttribute('aria-label', 'Guarda il video: ' + title);
+    const open = () => {
+      player.classList.toggle('vert', vert);
+      frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="${title.replace(/"/g, '&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+      player.showModal();
+    };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
 
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(r => io.observe(r));
