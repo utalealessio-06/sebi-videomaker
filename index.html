@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sebi · Videomaker</title>
+<title>SB · Content marketing</title>
 <meta name="description" content="Reel, interviste e video per la tua attività. Riprese e montaggio, pronti da pubblicare.">
 <meta name="theme-color" content="#14213d">
 <link rel="canonical" href="https://sebivideomaker.netlify.app/">
@@ -11,8 +11,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
-<meta property="og:site_name" content="Sebi · Videomaker">
-<meta property="og:title" content="Sebi · Videomaker a Roma">
+<meta property="og:site_name" content="SB · Content marketing">
+<meta property="og:title" content="SB · Content marketing">
 <meta property="og:description" content="Reel, interviste e video per la tua attività. Riprese e montaggio, pronti da pubblicare.">
 <meta property="og:url" content="https://sebivideomaker.netlify.app/">
 <meta property="og:image" content="https://sebivideomaker.netlify.app/og.png">
@@ -56,7 +56,6 @@ header{position:fixed;inset:0 0 auto;z-index:30;transition:background .3s,box-sh
 header.solid{background:rgba(20,33,61,.97);box-shadow:0 1px 0 var(--line-d)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:700;font-size:22px;letter-spacing:.04em}
-.logo i{width:11px;height:11px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
 .logo small{font-weight:500;font-size:12px;color:var(--mute-d);letter-spacing:.14em;text-transform:uppercase}
 @keyframes rec{50%{opacity:.3}}
 nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:15px}
@@ -68,11 +67,14 @@ nav .btn{padding:11px 20px}
 /* hero */
 .hero{position:relative;background:radial-gradient(900px 500px at 80% 20%,rgba(252,163,17,.16),transparent 60%),linear-gradient(160deg,var(--navy) 0%,#0b1326 60%,var(--black) 100%);color:#fff;padding-top:76px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line-d) 1px,transparent 1px),linear-gradient(90deg,var(--line-d) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 85%);pointer-events:none}
-.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center;padding-block:72px 64px}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"head head" "body reel";gap:40px 56px;align-items:start;padding-block:72px 64px}
+.h-head{grid-area:head}
+.h-body{grid-area:body;padding-top:8px}
+.hero-grid .reel{grid-area:reel}
 .hero h1{font-size:clamp(38px,4.6vw,64px);margin:22px 0 22px}
 .hero h1 .l1{display:block;white-space:nowrap}
 .hero h1 .l2{display:block;white-space:nowrap;color:var(--gold);min-height:1.05em}
-@media (min-width:1021px){.hero h1 .l2{font-size:1.4em;margin-top:.08em}}
+@media (min-width:1021px){.hero h1{margin-bottom:0}.hero h1 .l2{font-size:2.8em;line-height:1;margin-top:.04em}.hero h1 .l2 .type::after{width:max(3px,.03em)}}
 .type::after{content:"";display:inline-block;width:3px;height:.82em;background:var(--gold);margin-left:8px;vertical-align:-.04em;animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .hero p{font-size:19px;color:#c9cfdb;max-width:46ch;margin:0 0 32px}
@@ -195,7 +197,8 @@ footer .legal{grid-column:1/-1;font-size:13px}
 .js .reveal.in{opacity:1;transform:none}
 
 @media (max-width:1020px){
-  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-grid{grid-template-columns:1fr;grid-template-areas:"head" "body" "reel";gap:0}
+  .h-body{padding-top:0;margin-bottom:44px}
   .reel{width:min(100%,300px)}
   .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
   .works,.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -230,7 +233,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
 
 <header id="top">
   <div class="wrap">
-    <a class="logo" href="#home" aria-label="SB, torna all'inizio"><i></i>SB</a>
+    <a class="logo" href="#home" aria-label="SB, torna all'inizio">SB</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav">
       <a href="#servizi">Servizi</a>
@@ -246,9 +249,11 @@ footer .legal{grid-column:1/-1;font-size:13px}
 <section class="hero" id="home" style="padding-bottom:0">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
+      <div class="h-head">
         <div class="idx">Content marketing</div>
         <h1><span class="l1">Hai un'attività ma niente</span><span class="l2"><span class="type" id="type">contenuti?</span></span></h1>
+      </div>
+      <div class="h-body">
         <p>Reel, interviste e video per la tua attività: giro, monto e ti consegno tutto pronto da pubblicare.</p>
         <div class="actions">
           <a class="btn btn-gold" href="#contatti">Iniziamo</a>
