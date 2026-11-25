@@ -57,7 +57,6 @@ header.solid{background:rgba(20,33,61,.97);box-shadow:0 1px 0 var(--line-d)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:700;font-size:22px;letter-spacing:.04em}
 .logo small{font-weight:500;font-size:12px;color:var(--mute-d);letter-spacing:.14em;text-transform:uppercase}
-@keyframes rec{50%{opacity:.3}}
 nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:15px}
 nav a:not(.btn){opacity:.85}
 nav a:not(.btn):hover{opacity:1;color:var(--gold)}
@@ -84,9 +83,7 @@ nav .btn{padding:11px 20px}
 .reel{position:relative;justify-self:center;width:min(100%,340px);aspect-ratio:9/16;border-radius:28px;padding:10px;background:#0a0a0a;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
 .reel .screen{position:relative;height:100%;border-radius:20px;overflow:hidden;background:radial-gradient(70% 50% at 70% 30%,rgba(252,163,17,.75),transparent 65%),radial-gradient(60% 50% at 20% 80%,rgba(229,229,229,.25),transparent 60%),linear-gradient(170deg,#22335a,var(--navy) 50%,#000)}
 .reel .screen::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
-.reel .top{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:var(--f-head);font-size:12px;letter-spacing:.12em}
-.reel .top span{display:flex;align-items:center;gap:7px}
-.reel .top b{width:8px;height:8px;border-radius:50%;background:#ff4d5e;animation:rec 1.6s infinite}
+.reel .top{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:flex-end;font-family:var(--f-head);font-size:12px;letter-spacing:.12em}
 .reel .tc{font-variant-numeric:tabular-nums}
 .reel .bottom{position:absolute;left:16px;right:16px;bottom:18px}
 .reel .bottom small{color:#d9dde6;font-size:13px}
@@ -262,7 +259,7 @@ footer .legal{grid-column:1/-1;font-size:13px}
       </div>
       <div class="reel reveal" aria-label="Showreel">
         <div class="screen">
-          <div class="top"><span><b></b>REC</span><span class="tc" id="tc">00:00:00:00</span></div>
+          <div class="top"><span class="tc" id="tc">00:00:00:00</span></div>
           <button class="play" aria-label="Guarda lo showreel"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button>
           <div class="bottom"><small>@sebastianbalaniuc</small><div class="bar"><i></i></div></div>
         </div>
